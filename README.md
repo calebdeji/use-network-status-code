@@ -33,10 +33,15 @@ const CheckForNetworkStatusCodeAnd = () => {
 		networkStatusCode[authUserEndpoint] === 401 ||
 		networkStatusCode[authUserEndpoint] === 401
 	)
-		return <p> Unauthorised </p>;
+		return (
+			<div>
+				<p> Unauthorised </p>
+				<button onClick={clearStatus}> Login </button>
+			</div>
+		);
 	else if (
 		networkStatusCode[authUserEndpoint] === 0 ||
-		networkStatusCode[authUserEndpoint] === 401
+		networkStatusCode[authUserEndpoint] === 0
 	)
 		return <p> Seems you are not connected to the internet </p>;
 
