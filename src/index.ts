@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import interceptNetwork from './interceptNetwork';
 
-declare namespace useNetworkStatusNamespace {
+declare namespace useNetworkStatusCodeNamespace {
 	export type Props = {
 		urls: Array<string>;
 	};
@@ -19,7 +19,7 @@ const convertArrayOfURLsToObject = (urls: Array<string>) => {
 	}, {});
 };
 
-const useNetworkStatus = (props: useNetworkStatusNamespace.Props) => {
+const useNetworkStatusCode = (props: useNetworkStatusCodeNamespace.Props) => {
 	const [networkStatusCode, setNetworkStatusCode] = React.useState(() => {
 		return convertArrayOfURLsToObject(props.urls);
 	});
@@ -63,11 +63,11 @@ const useNetworkStatus = (props: useNetworkStatusNamespace.Props) => {
 				const {
 					status,
 					responseURL
-				} = target as useNetworkStatusNamespace.response;
+				} = target as useNetworkStatusCodeNamespace.response;
 				handleStatusAndUrl(responseURL, status);
 			},
 			onError: ({ target }, [, responseURL]) => {
-				const { status } = target as useNetworkStatusNamespace.response;
+				const { status } = target as useNetworkStatusCodeNamespace.response;
 				handleStatusAndUrl(responseURL, status);
 			},
 			onFetchError: (_, args) => {
@@ -79,4 +79,4 @@ const useNetworkStatus = (props: useNetworkStatusNamespace.Props) => {
 	return { networkStatusCode, clearStatus };
 };
 
-export default useNetworkStatus;
+export default useNetworkStatusCode;

@@ -1,8 +1,8 @@
 {
-  "short_name": "use-network-status",
-  "name": "use-network-status",
-  "start_url": "./index.html",
-  "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+	"short_name": "use-network-status-code",
+	"name": "use-network-status-code",
+	"start_url": "./index.html",
+	"display": "standalone",
+	"theme_color": "#000000",
+	"background_color": "#ffffff"
 }
