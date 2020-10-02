@@ -8,6 +8,11 @@ type parameters = {
 	) => void;
 };
 
+/**
+ *
+ * this was adopted from https://gist.github.com/benjamingr/0433b52559ad61f6746be786525e97e8
+ */
+
 const interceptNetworkRequests = (ee: parameters) => {
 	const open = XMLHttpRequest.prototype.open;
 	const send = XMLHttpRequest.prototype.send;

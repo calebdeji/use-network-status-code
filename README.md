@@ -31,7 +31,7 @@ const CheckForNetworkStatusCodeAnd = () => {
 
 	if (
 		networkStatusCode[authUserEndpoint] === 401 ||
-		networkStatusCode[authUserEndpoint] === 401
+		networkStatusCode[authAdminEndpoint] === 401
 	)
 		return (
 			<div>
@@ -41,7 +41,7 @@ const CheckForNetworkStatusCodeAnd = () => {
 		);
 	else if (
 		networkStatusCode[authUserEndpoint] === 0 ||
-		networkStatusCode[authUserEndpoint] === 0
+		networkStatusCode[authAdminEndpoint] === 0
 	)
 		return <p> Seems you are not connected to the internet </p>;
 
