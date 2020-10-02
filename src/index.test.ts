@@ -1,29 +1,32 @@
-import { useMyHook } from './'
-import { renderHook, act } from "@testing-library/react-hooks";
+import useNetworkStatus from './';
+import { renderHook, act } from '@testing-library/react-hooks';
 
 // mock timer using jest
 jest.useFakeTimers();
 
-describe('useMyHook', () => {
-  it('updates every second', () => {
-    const { result } = renderHook(() => useMyHook());
-
-    expect(result.current).toBe(0);
-
-    // Fast-forward 1sec
-    act(() => {
-      jest.advanceTimersByTime(1000);
+describe('useNetworkStatus', () => {
+    it('keeps track of urls not passed to the hook', () => {
+        const { result } = renderHook(() => useNetworkStatus({ urls: ['https:///dhsjs,s'] }));
+        expect(result.current.networkStatusCode).toStrictEqual({ 'https:///dhsjs,s': undefined });
     });
 
-    // Check after total 1 sec
-    expect(result.current).toBe(1);
+    it('delete statusCode of all APIs when clearStatus is executed without parameters', () => {
+        const { result } = renderHook(() => useNetworkStatus({ urls: ['https://testing.com'] }));
 
-    // Fast-forward 1 more sec
-    act(() => {
-      jest.advanceTimersByTime(1000);
+        act(() => {
+            result.current.clearStatus();
+        });
+
+        expect(result.current.networkStatusCode).toStrictEqual({ 'https://testing.com': undefined });
     });
 
-    // Check after total 2 sec
-    expect(result.current).toBe(2);
-  })
-})
+    it('delete statusCode of API when clearStatus is executed with the api url', () => {
+        const { result } = renderHook(() => useNetworkStatus({ urls: ['https://testing.com'] }));
+
+        act(() => {
+            result.current.clearStatus(['https://testing.com']);
+        });
+
+        expect(result.current.networkStatusCode).toStrictEqual({ 'https://testing.com': undefined });
+    });
+});
