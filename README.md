@@ -10,20 +10,48 @@
 npm install --save use-network-status
 ```
 
+- It's pretty small in size
+- It's build with typescript
+
 ## Usage
 
 ```tsx
-import * as React from 'react'
+import React, { useState, useEffect } from 'react'
 
-import { useMyHook } from 'use-network-status'
+import useNetworkStatus from 'use-network-status'
+
+const moviesEndpoint = 'https://ghibliapi.herokuapp.com/films'
 
 const Example = () => {
-  const example = useMyHook()
-  return (
-    <div>
-      {example}
-    </div>
-  )
+  const { networkStatusCode, clearStatus } = useNetworkStatus({
+    urls: [moviesEndpoint]
+  });
+
+  const [data, setData] = useState(null)
+
+  useEffect(() => {
+    fetch(moviesEndpoint)
+      .then((response) => {
+          return response.json();
+      })
+      .then((data) => {
+          setData(data)
+      });
+  , [])
+
+  if( networkStatusCode[moviesEndpoint] === 401 ){
+    return <p> You are not authorised </p>
+  }
+
+  return <>
+    {
+      data.map(({ id, description })=>{
+        return (
+          <div key = {id}> <p> { description } </p> </div>
+        )
+      })
+    }
+  </>
 }
 ```
 
