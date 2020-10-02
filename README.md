@@ -27,7 +27,7 @@ const authAdminEndpoint = 'https://api-admin-endpoint.com';
 const CheckForNetworkStatusCodeAnd = () => {
 	const { networkStatusCode, clearStatus } = useNetworkStatus({
 		urls: [authUserEndpoint, authAdminEndpoint]
-	});
+	}); // accepts an array of urls through the urls properties
 
 	if (
 		networkStatusCode[authUserEndpoint] === 401 ||
@@ -48,6 +48,11 @@ const CheckForNetworkStatusCodeAnd = () => {
 	return <> </>;
 };
 ```
+
+| Return Value      | description                                                                                                                 |
+| ----------------- | --------------------------------------------------------------------------------------------------------------------------- |
+| networkStatusCode | an object that contains the status code of the urls. The status code of each url can be accessed via networkStatusCode[url] |
+| clearStatus       | accepts an array of urls. It resets the statusCode of the urls passed                                                       |
 
 ## License
 
