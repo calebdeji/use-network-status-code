@@ -1,58 +1,47 @@
-# use-network-status
+# use-network-status-code
 
-> intercept network and get the status
+> Hook created to keep track of the status code of all API calls made to some specific urls
 
-[![NPM](https://img.shields.io/npm/v/use-network-status.svg)](https://www.npmjs.com/package/use-network-status) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+[![NPM](https://img.shields.io/npm/v/use-network-status-code.svg)](https://www.npmjs.com/package/use-network-status-code) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
 ## Install
 
 ```bash
-npm install --save use-network-status
+npm install --save use-network-status-code
 ```
 
-- It's pretty small in size
-- It's build with typescript
+## Concept
+
+You probably want to redirect a user to the login page or even display a dialog that asks your user to login anytime a particular endpoint returns 401 status code (unauthorised). use-network-status-code helps you keep track of the status code returned from the api, with this, you can easily write a component that controls the dialog based on the status code.
 
 ## Usage
 
 ```tsx
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react';
 
-import useNetworkStatus from 'use-network-status'
+import useNetworkStatus from 'use-network-status-code';
 
-const moviesEndpoint = 'https://ghibliapi.herokuapp.com/films'
+const authUserEndpoint = 'https://api-endpoint.com';
+const authAdminEndpoint = 'https://api-admin-endpoint.com';
 
-const Example = () => {
-  const { networkStatusCode, clearStatus } = useNetworkStatus({
-    urls: [moviesEndpoint]
-  });
+const CheckForNetworkStatusCodeAnd = () => {
+	const { networkStatusCode, clearStatus } = useNetworkStatus({
+		urls: [authUserEndpoint, authAdminEndpoint]
+	});
 
-  const [data, setData] = useState(null)
+	if (
+		networkStatusCode[authUserEndpoint] === 401 ||
+		networkStatusCode[authUserEndpoint] === 401
+	)
+		return <p> Unauthorised </p>;
+	else if (
+		networkStatusCode[authUserEndpoint] === 0 ||
+		networkStatusCode[authUserEndpoint] === 401
+	)
+		return <p> Seems you are not connected to the internet </p>;
 
-  useEffect(() => {
-    fetch(moviesEndpoint)
-      .then((response) => {
-          return response.json();
-      })
-      .then((data) => {
-          setData(data)
-      });
-  , [])
-
-  if( networkStatusCode[moviesEndpoint] === 401 ){
-    return <p> You are not authorised </p>
-  }
-
-  return <>
-    {
-      data.map(({ id, description })=>{
-        return (
-          <div key = {id}> <p> { description } </p> </div>
-        )
-      })
-    }
-  </>
-}
+	return <> </>;
+};
 ```
 
 ## License
