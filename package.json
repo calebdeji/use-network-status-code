@@ -17,7 +17,7 @@
 		"npm": ">=5"
 	},
 	"scripts": {
-		"test": "cross-env CI=1 react-scripts test --env=jsdom",
+		"test": "react-scripts test",
 		"test:watch": "react-scripts test --env=jsdom",
 		"build": "rollup -c && tsc -d --emitDeclarationOnly --noEmit false --declarationDir dist",
 		"start": "rollup -c -w",
@@ -38,10 +38,11 @@
 		"@rollup/plugin-typescript": "^5.0.2",
 		"@rollup/plugin-url": "^5.0.1",
 		"@testing-library/react-hooks": "^3.2.1",
-		"@types/jest": "^23.3.13",
+		"@types/jest": "^26.0.14",
 		"@types/react": "^16.7.22",
 		"cross-env": "^5.2.0",
 		"gh-pages": "^2.0.1",
+		"jest": "^26.5.0",
 		"miragejs": "^0.1.41",
 		"react": "^16.9.0",
 		"react-scripts": "^3.4.0",
