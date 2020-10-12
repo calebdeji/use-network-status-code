@@ -37,9 +37,13 @@ const useNetworkStatusCode = (props: useNetworkStatusCodeNamespace.Props) => {
 		});
 
 		if (isValidURL) {
+			const correspondingBaseURL = props.baseURLs.find((validURL) => {
+				return url.substr(0, validURL.length) === validURL;
+			}) as string;
+
 			setNetworkStatusCode((prevValues) => ({
 				...prevValues,
-				[url]: statusCode
+				[correspondingBaseURL]: statusCode
 			}));
 		}
 	};
