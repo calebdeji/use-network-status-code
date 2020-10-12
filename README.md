@@ -23,11 +23,13 @@ import useNetworkStatus from 'use-network-status-code';
 
 const authUserEndpoint = 'https://api-endpoint.com';
 const authAdminEndpoint = 'https://api-admin-endpoint.com';
+const loginEndpoint = 'https://api-admin-login-endpoint.com';
 
 const CheckForNetworkStatusCodeAnd = () => {
 	const { networkStatusCode, clearStatus } = useNetworkStatus({
-		urls: [authUserEndpoint, authAdminEndpoint]
-	}); // accepts an array of urls through the urls properties
+		baseURLs: [authUserEndpoint, authAdminEndpoint] // accepts an array of urls through the baseURLs properties,
+		excludingURLs : [loginEndpoint] //specifies the endpoint that matches one of the baseURLs but shouldn't be tracked
+	});
 
 	if (
 		networkStatusCode[authUserEndpoint] === 401 ||
