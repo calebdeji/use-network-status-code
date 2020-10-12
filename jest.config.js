@@ -1,4 +1,5 @@
 module.exports = {
-	collectCoverage: true,
-	collectCoverageFrom: ['**/*.{js,jsx}', '!**/node_modules/**', '!**/vendor/**']
+	moduleFileExtensions: ['ts', 'js'],
+	testRegex: '/__tests__/.*\\.(ts|js)$',
+	transformIgnorePatterns: ['<rootDir>/node_modules/']
 };

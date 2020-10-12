@@ -4,7 +4,8 @@ import interceptNetwork from './interceptNetwork';
 
 declare namespace useNetworkStatusCodeNamespace {
 	export type Props = {
-		urls: Array<string>;
+		baseURLs: Array<string>;
+		excludingURLs?: Array<string>;
 	};
 
 	export type response = {
@@ -21,13 +22,16 @@ const convertArrayOfURLsToObject = (urls: Array<string>) => {
 
 const useNetworkStatusCode = (props: useNetworkStatusCodeNamespace.Props) => {
 	const [networkStatusCode, setNetworkStatusCode] = React.useState(() => {
-		return convertArrayOfURLsToObject(props.urls);
+		return convertArrayOfURLsToObject(props.baseURLs);
 	});
 
 	const handleStatusAndUrl = (url: string, statusCode: number) => {
-		const isValidURL = props.urls.some((validURL) => {
+		const isValidURL = props.baseURLs.some((validURL) => {
 			const validURLLength = validURL.length;
-			return url.substr(0, validURLLength) === validURL;
+			return (
+				url.substr(0, validURLLength) === validURL &&
+				!props?.excludingURLs?.includes(url)
+			);
 		});
 
 		if (isValidURL) {
@@ -49,7 +53,7 @@ const useNetworkStatusCode = (props: useNetworkStatusCodeNamespace.Props) => {
 			});
 		} else {
 			setNetworkStatusCode(() => {
-				return convertArrayOfURLsToObject(props.urls);
+				return convertArrayOfURLsToObject(props.baseURLs);
 			});
 		}
 	};
