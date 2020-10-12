@@ -27,8 +27,8 @@ const loginEndpoint = 'https://api-admin-login-endpoint.com';
 
 const CheckForNetworkStatusCodeAnd = () => {
 	const { networkStatusCode, clearStatus } = useNetworkStatus({
-		baseURLs: [authUserEndpoint, authAdminEndpoint] // accepts an array of urls through the baseURLs properties,
-		excludingURLs : [loginEndpoint] //specifies the endpoint that matches one of the baseURLs but shouldn't be tracked
+		baseURLs: [authUserEndpoint, authAdminEndpoint], // accepts an array of urls through the baseURLs properties,
+		excludingURLs: [loginEndpoint] //specifies the endpoint that matches one of the baseURLs but shouldn't be tracked
 	});
 
 	if (
