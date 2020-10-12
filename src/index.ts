@@ -14,7 +14,9 @@ declare namespace useNetworkStatusCodeNamespace {
 	};
 }
 
-const convertArrayOfURLsToObject = (urls: Array<string>) => {
+const convertArrayOfURLsToObject = (
+	urls: Array<string>
+): { [key: string]: any } => {
 	return urls.reduce((accumulator, currentValue) => {
 		return { ...accumulator, [currentValue]: undefined };
 	}, {});
