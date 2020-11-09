@@ -1,6 +1,6 @@
 {
 	"name": "use-network-status-code",
-	"version": "1.0.5",
+	"version": "1.0.6",
 	"description": "intercept network and get the status",
 	"author": "calebdeji",
 	"license": "MIT",
