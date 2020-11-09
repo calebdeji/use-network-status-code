@@ -19,8 +19,6 @@ const interceptNetworkRequests = (ee: parameters) => {
 
 	const isRegularXHR = open.toString().indexOf('native code') !== -1;
 
-	// don't hijack if already hijacked - this will mess up with frameworks like Angular with zones
-	// we work if we load first there which we can.
 	if (isRegularXHR) {
 		XMLHttpRequest.prototype.open = function (...args: any) {
 			this.addEventListener('load', function (data) {
@@ -40,8 +38,6 @@ const interceptNetworkRequests = (ee: parameters) => {
 	}
 
 	const fetch = window.fetch || '';
-	// don't hijack twice, if fetch is built with XHR no need to decorate, if already hijacked
-	// then this is dangerous and we opt out
 	const isFetchNative = fetch.toString().indexOf('native code') !== -1;
 	if (isFetchNative) {
 		window.fetch = function (...args: any) {

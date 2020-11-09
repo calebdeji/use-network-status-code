@@ -18,7 +18,7 @@ const convertArrayOfURLsToObject = (
 	urls: Array<string>
 ): { [key: string]: any } => {
 	return urls.reduce((accumulator, currentValue) => {
-		return { ...accumulator, [currentValue]: undefined };
+		return { ...accumulator, [currentValue]: null };
 	}, {});
 };
 
@@ -48,18 +48,27 @@ const useNetworkStatusCode = (props: useNetworkStatusCodeNamespace.Props) => {
 		}
 	};
 
-	const clearStatus = (urls: Array<string> = []) => {
-		if (urls.length !== 0) {
+	const clearStatus = (url: string | Array<string> = []) => {
+		if (Array.isArray(url)) {
+			if (url.length !== 0) {
+				setNetworkStatusCode((prevValues) => {
+					const nullURLsStatusCode = convertArrayOfURLsToObject(url);
+					return {
+						...prevValues,
+						...nullURLsStatusCode
+					};
+				});
+			} else {
+				setNetworkStatusCode(() => {
+					return convertArrayOfURLsToObject(props.baseURLs);
+				});
+			}
+		} else {
 			setNetworkStatusCode((prevValues) => {
-				const undefinedURLsStatusCode = convertArrayOfURLsToObject(urls);
 				return {
 					...prevValues,
-					...undefinedURLsStatusCode
+					[url]: null
 				};
-			});
-		} else {
-			setNetworkStatusCode(() => {
-				return convertArrayOfURLsToObject(props.baseURLs);
 			});
 		}
 	};
