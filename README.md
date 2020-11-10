@@ -51,10 +51,14 @@ const CheckForNetworkStatusCodeAnd = () => {
 };
 ```
 
+## Examples
+
+- [A simple top level component used with the hook](https://codesandbox.io/s/hardcore-hopper-6vnum)
+
 | Return Value      | description                                                                                                                 |
 | ----------------- | --------------------------------------------------------------------------------------------------------------------------- |
 | networkStatusCode | an object that contains the status code of the urls. The status code of each url can be accessed via networkStatusCode[url] |
-| clearStatus       | accepts an array of urls. It resets the statusCode of the urls passed                                                       |
+| clearStatus       | accepts an array of urls or a url as a parameter. It resets the statusCode of the url(s) passed                             |
 
 ## License
 
