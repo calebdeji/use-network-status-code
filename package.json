@@ -1,6 +1,5 @@
 {
 	"name": "use-network-status-code",
-	"publisher": "calebdeji",
 	"version": "1.0.7",
 	"description": "intercept network and get the status",
 	"author": "calebdeji",
