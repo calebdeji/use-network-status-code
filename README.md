@@ -2,7 +2,11 @@
 
 > Hook created to keep track of the status code of all API calls made to some specific urls
 
-[![NPM](https://img.shields.io/npm/v/use-network-status-code.svg)](https://www.npmjs.com/package/use-network-status-code) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+  <p>
+  <a href="https://www.npmjs.com/package/use-network-status-code"><img src="https://img.shields.io/npm/v/use-network-status-code.svg" alt="npm"></a>
+  <a href="https://www.npmjs.com/package/use-network-status-code"><img src="https://img.shields.io/npm/dm/use-network-status-code.svg" alt="downloads/month"></a>
+  <a href="http://makeapullrequest.com"><img src="https://img.shields.io/badge/PR(s)-welcome-brightgreen.svg?style=flat-square" alt="pullrequest"></a>
+  </p>
 
 ## Install
 
